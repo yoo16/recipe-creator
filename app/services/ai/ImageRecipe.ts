@@ -46,7 +46,8 @@ export async function CreateRecipe(imageFile: File) {
             }]
         );
 
-        var json = JSON.parse(result.response.text());
+        var text = await result.response.text();
+        var json = JSON.parse(text);
         console.log(prompt)
         console.log(json);
         return json;

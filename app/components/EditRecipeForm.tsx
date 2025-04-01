@@ -139,6 +139,15 @@ const EditRecipeForm = ({ initRecipe }: EditRecipeFormProps) => {
                 </div>
 
                 <div className="mb-8">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">説明</label>
+                    <textarea
+                        className="border border-gray-300 rounded p-3 w-full"
+                        value={recipe?.description || ''}
+                        onChange={(e) => handleRecipeChange('description', e.target.value)}
+                    ></textarea>
+                </div>
+
+                <div className="mb-8">
                     <label className="block text-sm font-medium text-gray-700 mb-2">画像</label>
                     <input
                         type="file"
@@ -160,14 +169,6 @@ const EditRecipeForm = ({ initRecipe }: EditRecipeFormProps) => {
                     )}
                 </div>
 
-                <div className="mb-8">
-                    <label className="block text-sm font-medium text-gray-700 mb-2">説明</label>
-                    <textarea
-                        className="border border-gray-300 rounded p-3 w-full"
-                        value={recipe?.description || ''}
-                        onChange={(e) => handleRecipeChange('description', e.target.value)}
-                    ></textarea>
-                </div>
 
                 <div className="mb-8">
                     <IngredientForm

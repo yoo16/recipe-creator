@@ -1,5 +1,5 @@
 import { NextRequest, NextResponse } from 'next/server';
-import { CreateRecipe } from '@/app/services/AiRecipe';
+import { CreateRecipe } from '@/app/services/ai/Recipe';
 
 export async function POST(req: NextRequest) {
     try {
