@@ -7,6 +7,7 @@ import GenreInput from '@/app/components/GenreInput';
 import KeywordInput from '@/app/components/KeywordInput';
 import IngredientForm from '@/app/components/IngredientForm';
 import StepForm from './StepForm';
+import Image from 'next/image';
 
 interface EditRecipeFormProps {
     initRecipe: Recipe;
@@ -16,6 +17,7 @@ const EditRecipeForm = ({ initRecipe }: EditRecipeFormProps) => {
     const router = useRouter();
 
     const [recipe, setRecipe] = useState<Recipe>(initRecipe);
+    const [selectedImage, setSelectedImage] = useState<File | null>(null);
     const [ingredients, setIngredients] = useState<Ingredient[]>(initRecipe.ingredients);
     const [steps, setSteps] = useState<Step[]>(initRecipe.steps);
 
@@ -75,7 +77,22 @@ const EditRecipeForm = ({ initRecipe }: EditRecipeFormProps) => {
             steps,
         };
 
+        // レシピの更新
         await axios.put(`/api/recipe/${recipe.id}/update`, payload);
+
+        // 画像がある場合はアップロード
+        if (selectedImage) {
+            const formData = new FormData();
+            formData.append('image', selectedImage);
+
+            const uri = `/api/recipe/${recipe.id}/upload-image`;
+            // console.log(uri);
+            await axios.post(uri, formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data',
+                },
+            });
+        }
 
         router.push('/user/recipe');
     };
@@ -119,6 +136,28 @@ const EditRecipeForm = ({ initRecipe }: EditRecipeFormProps) => {
                         keywords={recipe?.keywords}
                         onChange={handleRecipeChange}
                     />
+                </div>
+
+                <div className="mb-8">
+                    <label className="block text-sm font-medium text-gray-700 mb-2">画像</label>
+                    <input
+                        type="file"
+                        accept="image/*"
+                        onChange={(e) => {
+                            if (e.target.files && e.target.files[0]) {
+                                setSelectedImage(e.target.files[0]);
+                            }
+                        }}
+                    />
+                    {recipe.image && (
+                        <Image
+                            src={recipe.image}
+                            alt={recipe.title}
+                            className="mt-2 w-full h-auto rounded"
+                            width={300}
+                            height={300}
+                        />
+                    )}
                 </div>
 
                 <div className="mb-8">

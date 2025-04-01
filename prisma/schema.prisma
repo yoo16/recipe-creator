@@ -11,6 +11,7 @@ model Recipe {
     id          Int          @id @default(autoincrement())
     title       String
     genre       String?
+    image       String?
     description String?
     ingredients Ingredient[]
     steps       Step[]

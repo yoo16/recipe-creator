@@ -4,6 +4,7 @@ export const initRecipe: Recipe = {
     id: 0,
     title: "",
     genre: "",
+    image: "",
     description: "",
     keywords: "",
     ingredients: [],
