@@ -18,7 +18,7 @@ export default function RecipesPage() {
 
     return (
         <div className="container mx-auto p-4">
-            <h1 className="text-2xl font-bold mb-4">レシピ一覧</h1>
+            <h1 className="text-3xl font-bold p-4 text-center">レシピをさがす</h1>
             <div className="my-3">
                 <div className="my-3">
                     <RecipeList recipes={recipes} />

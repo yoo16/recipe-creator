@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 
 interface RecipeListProps {
     recipes: Recipe[];
@@ -8,21 +9,36 @@ interface RecipeListProps {
 
 const RecipeList: React.FC<RecipeListProps> = ({ recipes }) => {
     return (
-        <ul>
+        <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
             {recipes.map((recipe) => (
-                <li key={recipe.id} className="py-2 border-b">
-                    <span className="mx-3 px-3 py-1 bg-blue-500 text-white text-xs rounded">
-                        {recipe.genre}
-                    </span>
-                    <Link
-                        href={`/recipe/${recipe.id}`}
-                        className="me-3 text-gray-500 px-4 py-1 my-4"
-                    >
-                        {recipe.title}
+                <div
+                    key={recipe.id}
+                    className=""
+                >
+                    <Link href={`/recipe/${recipe.id}`} className="block h-full">
+                        <Image
+                            src={recipe.image || '/no-image.png'}
+                            alt={recipe.title}
+                            width={500}
+                            height={500}
+                            className="w-full object-cover rounded-xl"
+                        />
+
+                        <div className="p-4">
+                            {/* ジャンルラベル */}
+                            <span className="mb-2 inline-block rounded-full bg-blue-500 px-3 py-1 text-xs font-semibold text-white">
+                                {recipe.genre}
+                            </span>
+
+                            {/* タイトル */}
+                            <h2 className="text-lg font-semibold text-gray-900">
+                                {recipe.title}
+                            </h2>
+                        </div>
                     </Link>
-                </li>
+                </div>
             ))}
-        </ul>
+        </div>
     );
 };
 

@@ -17,11 +17,11 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body className="bg-white">
+      <body>
         <LoadingProvider>
           <Loading />
           <MainMenu />
-          <main className="container mx-auto p-4">
+          <main className="">
             {children}
           </main>
         </LoadingProvider>
