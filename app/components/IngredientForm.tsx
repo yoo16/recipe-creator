@@ -11,6 +11,13 @@ const IngredientForm = ({ ingredients, onAddIngredient, onRemoveIngredient, onCh
     return (
         <div className="mb-8">
             <h2 className="text-xl font-semibold text-gray-700 mb-4">材料</h2>
+            <button
+                type="button"
+                className="bg-blue-500 text-sm text-white rounded px-4 py-2"
+                onClick={onAddIngredient}
+            >
+                材料を追加
+            </button>
             {ingredients.map((ingredient, index) => (
                 <div key={index} className="flex items-center mb-4">
                     <input
@@ -38,13 +45,7 @@ const IngredientForm = ({ ingredients, onAddIngredient, onRemoveIngredient, onCh
                     </button>
                 </div>
             ))}
-            <button
-                type="button"
-                className="bg-blue-500 text-sm text-white rounded px-4 py-2"
-                onClick={onAddIngredient}
-            >
-                材料を追加
-            </button>
+
         </div>
     );
 };

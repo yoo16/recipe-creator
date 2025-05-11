@@ -11,10 +11,7 @@ const RecipeList: React.FC<RecipeListProps> = ({ recipes }) => {
     return (
         <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-3">
             {recipes.map((recipe) => (
-                <div
-                    key={recipe.id}
-                    className=""
-                >
+                <div key={recipe.id}>
                     <Link href={`/recipe/${recipe.id}`} className="block h-full">
                         <Image
                             src={recipe.image || '/no-image.png'}
